@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Generador de Iconos TPV</title>
+</head>
+
+<body>
+    <h1>Generador de Iconos para TPV</h1>
+    <button onclick="generateAllIcons()"
+        style="padding: 20px; font-size: 18px; background: #ff6b6b; color: white; border: none; border-radius: 10px; cursor: pointer;">
+        🎨 Generar Todos los Iconos
+    </button>
+    <div id="downloads" style="margin-top: 20px;"></div>
+
+    <script>
+        function createIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Fondo degradado
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#ff6b6b');
+            gradient.addColorStop(1, '#ffa502');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+
+            // Texto TPV
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.25}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('TPV', size / 2, size / 2 - size * 0.1);
+
+            // Texto PRO
+            ctx.font = `bold ${size * 0.12}px Arial`;
+            ctx.fillText('PRO', size / 2, size / 2 + size * 0.15);
+
+            return canvas;
+        }
+
+        function generateAllIcons() {
+            const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+            const downloads = document.getElementById('downloads');
+            downloads.innerHTML = '<h2>Haz clic derecho en cada imagen → "Guardar imagen como..."</h2>';
+
+            sizes.forEach(size => {
+                const canvas = createIcon(size);
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL();
+                img.title = `icon-${size}x${size}.png`;
+                img.style.margin = '10px';
+                img.style.border = '2px solid #ccc';
+
+                const label = document.createElement('div');
+                label.textContent = `icon-${size}x${size}.png`;
+                label.style.textAlign = 'center';
+                label.style.fontWeight = 'bold';
+
+                const container = document.createElement('div');
+                container.style.display = 'inline-block';
+                container.style.margin = '10px';
+                container.appendChild(img);
+                container.appendChild(label);
+
+                downloads.appendChild(container);
+            });
+        }
+    </script>
+</body>
+
+</html>

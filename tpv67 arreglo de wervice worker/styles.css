@@ -1,0 +1,2172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    min-height: 100vh;
+    color: #e0e0e0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+#fecha {
+    color: #888;
+    font-weight: 500;
+}
+
+.tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 15px 30px;
+    background: rgba(30, 30, 30, 0.9);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+    transform: translateY(-2px);
+    background: rgba(40, 40, 40, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tab-button.active {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+    color: white;
+    border: none;
+    transform: scale(1.05);
+}
+
+.tab-content {
+    display: none;
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+/* ================================== */
+/* MESAS OPTIMIZADAS PARA TPV TÁCTIL */
+/* ================================== */
+
+.mesas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.mesa {
+    background: rgba(30, 30, 30, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mesa::before {
+    content: '🪑';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.05;
+    right: -30px;
+    bottom: -30px;
+    transform: rotate(-15deg);
+}
+
+.mesa:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.mesa.ocupada {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.mesa h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.mesa p {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #ffa502;
+}
+
+.mesa.ocupada::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 16px;
+    height: 16px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 107, 107, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+    }
+}
+
+/* Para tablets y pantallas grandes */
+@media (min-width: 768px) {
+    .mesas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .mesa {
+        min-height: 160px;
+        padding: 30px;
+    }
+
+    .mesa h3 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+
+    .mesa p {
+        font-size: 1.4em;
+    }
+}
+
+/* Para pantallas extra grandes */
+@media (min-width: 1400px) {
+    .mesas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .mesa {
+        min-height: 170px;
+        padding: 35px;
+    }
+
+    .mesa h3 {
+        font-size: 1.9em;
+    }
+
+    .mesa p {
+        font-size: 1.5em;
+    }
+}
+
+/* ================================== */
+/* MODAL TPV CON 2 COLUMNAS */
+/* ================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background: rgba(20, 20, 20, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease;
+}
+
+/* MODAL DE COBRO OPTIMIZADO PARA 1920x1080 */
+#modalCobro .modal-content {
+    max-width: 650px;
+    width: 90%;
+    max-height: 85vh;
+    padding: 30px;
+    margin: 5vh auto;
+    overflow-y: auto;
+}
+
+#modalCobro h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+#modalCobro #totalACobrar {
+    font-size: 2.8em !important;
+    font-weight: 900 !important;
+    padding: 20px !important;
+    margin: 15px 0 !important;
+}
+
+#modalCobro select,
+#modalCobro input {
+    font-size: 1.3em !important;
+    padding: 15px !important;
+    min-height: 50px !important;
+}
+
+#modalCobro #cambioCalculado {
+    font-size: 1.8em !important;
+    font-weight: bold !important;
+}
+
+#modalCobro .btn-success,
+#modalCobro .btn-primary {
+    font-size: 1.3em !important;
+    padding: 15px 30px !important;
+    min-height: 55px !important;
+    min-width: 150px !important;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* MODAL DE MESA TPV PROFESIONAL - OPTIMIZADO PARA 1920x1080 */
+#mesaModal .modal-content {
+    width: 98% !important;
+    height: 90vh !important;
+    max-width: 1600px !important;
+    margin: 5vh auto !important;
+    padding: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.98), rgba(30, 30, 30, 0.98)) !important;
+    border: 3px solid rgba(255, 107, 107, 0.3) !important;
+    border-radius: 15px !important;
+}
+
+/* Layout de 2 columnas mejorado */
+.modal-body {
+    display: flex !important;
+    flex: 1 !important;
+    gap: 20px !important;
+    min-height: 0 !important;
+    height: calc(100% - 180px) !important;
+}
+
+/* Columna productos - 65% */
+.productos-section {
+    flex: 0 0 65% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+}
+
+/* Columna ticket - 35% */
+.ticket-section {
+    flex: 0 0 35% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+}
+
+/* ================================== */
+/* PESTAÑAS DE CATEGORÍAS */
+/* ================================== */
+
+.categorias-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.categoria-tab {
+    padding: 12px 20px;
+    background: rgba(40, 40, 40, 0.9);
+    color: #e0e0e0;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.categoria-tab:hover {
+    transform: translateY(-2px);
+    background: rgba(50, 50, 50, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.categoria-tab.active {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+    color: white;
+    border-color: transparent;
+    transform: scale(1.05);
+}
+
+/* Contenedor principal con columnas */
+.modal-body {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    min-height: 0;
+}
+
+/* Columna izquierda - Productos (70%) */
+.productos-section {
+    flex: 0 0 70%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Columna derecha - Ticket (30%) */
+.ticket-section {
+    flex: 0 0 30%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+
+/* ================================== */
+/* TICKET COMPACTO SIN SCROLL */
+/* ================================== */
+
+.ticket {
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(25, 25, 25, 0.98));
+    border: 3px solid rgba(255, 165, 2, 0.6);
+    padding: 20px;
+    border-radius: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 -5px 20px rgba(255, 165, 2, 0.2);
+    min-height: 0;
+}
+
+.ticket h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+    color: #ffa502;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+#ticketItems {
+    flex: 1;
+    overflow: hidden;
+    margin-bottom: 15px;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 0;
+    max-height: none;
+}
+
+/* Items del ticket más compactos y legibles */
+.ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-weight: 500;
+    color: #e0e0e0;
+    min-height: 28px;
+    flex-shrink: 0;
+}
+
+.ticket-item:last-child {
+    border-bottom: none;
+}
+
+/* Información del producto más clara */
+.ticket-item .producto-info {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-right: 10px;
+}
+
+/* Precio más destacado */
+.ticket-item .precio-info {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffa502;
+    white-space: nowrap;
+}
+
+/* Total MUY VISIBLE */
+.ticket .total {
+    font-size: 24px;
+    font-weight: 900;
+    color: #ffa502;
+    text-align: center;
+    background: rgba(255, 165, 2, 0.15);
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 165, 2, 0.4);
+    margin-top: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    flex-shrink: 0;
+}
+
+/* ================================== */
+/* BOTONES Y CONTROLES */
+/* ================================== */
+
+/* Eliminar delay táctil de 300ms */
+* {
+    touch-action: manipulation;
+}
+
+button,
+.btn-primary,
+.btn-success,
+.btn-danger,
+.btn-warning,
+.producto-btn,
+.producto-btn-tpv,
+.mesa-tpv,
+.categoria-tab,
+.area-mesa-tab {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* BOTONES TPV MÁS GRANDES PARA TÁCTIL */
+#mesaModal>div:last-child button {
+    font-size: 1.6em !important;
+    padding: 20px 35px !important;
+    min-height: 65px !important;
+    min-width: 180px !important;
+    margin: 8px !important;
+    border-radius: 15px !important;
+}
+
+#mesaModal .btn-success {
+    background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+}
+
+#mesaModal .btn-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+}
+
+#mesaModal .btn-primary {
+    background: linear-gradient(135deg, #4a5568, #374151) !important;
+}
+
+.btn-primary {
+    background: #4a5568;
+    color: white;
+}
+
+.btn-success {
+    background: #22c55e;
+    color: white;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-warning {
+    background: #f59e0b;
+    color: white;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+
+/* Botones del modal más compactos */
+#mesaModal>div:last-child {
+    margin-top: 15px;
+    flex-shrink: 0;
+}
+
+#mesaModal>div:last-child button {
+    min-height: 45px;
+    font-size: 16px;
+    padding: 12px 20px;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 35px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #ff6b6b;
+}
+
+
+
+
+/* ================================== */
+/* FACTURACIÓN Y TABLAS */
+/* ================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.stat-card {
+    background: rgba(30, 30, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 107, 107, 0.3);
+}
+
+.stat-card h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #888;
+}
+
+.stat-card .value {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #ffa502;
+}
+
+.facturacion-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.facturacion-table th,
+.facturacion-table td {
+    padding: 15px;
+    text-align: left;
+    color: #e0e0e0;
+}
+
+.facturacion-table th {
+    background: rgba(255, 107, 107, 0.2);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.facturacion-table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.facturacion-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+h3 {
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* ================================== */
+/* TECLADOS VIRTUALES */
+/* ================================== */
+
+/* Teclado Numérico Virtual */
+.teclado-numerico {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    background: rgba(20, 20, 20, 0.98);
+    border: 2px solid rgba(255, 107, 107, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+.teclado-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.teclado-display {
+    background: rgba(40, 40, 40, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.teclado-display input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffa502;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: right;
+    outline: none;
+}
+
+.teclado-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.tecla-num {
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tecla-num:hover {
+    background: rgba(255, 107, 107, 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.tecla-num:active {
+    transform: translateY(0);
+}
+
+.tecla-func {
+    background: rgba(60, 60, 60, 0.9);
+    color: #ffa502;
+}
+
+.tecla-func:hover {
+    background: rgba(255, 165, 2, 0.2);
+    border-color: rgba(255, 165, 2, 0.5);
+}
+
+.tecla-borrar {
+    font-size: 28px;
+}
+
+.tecla-ok {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    font-size: 32px;
+}
+
+.tecla-ok:hover {
+    background: rgba(34, 197, 94, 0.3);
+    border-color: rgba(34, 197, 94, 0.5);
+}
+
+.tecla-cero {
+    grid-column: span 2;
+}
+
+.tecla-cerrar {
+    width: 100%;
+    margin-top: 10px;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: #ef4444;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tecla-cerrar:hover {
+    background: rgba(239, 68, 68, 0.3);
+}
+
+/* Teclado Completo Virtual */
+.teclado-completo {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    background: rgba(20, 20, 20, 0.98);
+    border: 2px solid rgba(255, 107, 107, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    animation: slideUp 0.3s ease;
+    max-width: 90%;
+}
+
+.teclado-grid-completo {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.tecla {
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 15px 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 45px;
+}
+
+.tecla:hover {
+    background: rgba(255, 107, 107, 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.tecla:active {
+    transform: translateY(0);
+}
+
+.teclado-completo .tecla-ok {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.teclado-completo .tecla-ok:hover {
+    background: rgba(34, 197, 94, 0.3);
+    border-color: rgba(34, 197, 94, 0.5);
+    transform: translateY(-2px);
+}
+
+.teclado-completo .tecla-ok:active {
+    transform: translateY(0);
+}
+
+.tecla-espacio {
+    grid-column: span 8;
+    background: rgba(40, 40, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.tecla-espacio:hover {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.teclado-fila-inferior {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#tecladoCompletoInput {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffa502;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    outline: none;
+}
+
+/* ================================== */
+/* SWITCH CONFIGURACIÓN */
+/* ================================== */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(60, 60, 60, 0.9);
+    transition: 0.4s;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.switch input:checked+.slider {
+    background-color: #ffa502;
+    border-color: #ffa502;
+}
+
+.switch input:checked+.slider:before {
+    transform: translateX(30px);
+}
+
+.switch:hover .slider {
+    box-shadow: 0 0 10px rgba(255, 165, 2, 0.5);
+}
+
+/* ================================== */
+/* RESPONSIVE DESIGN */
+/* ================================== */
+
+/* Responsive para teclados */
+@media (max-width: 768px) {
+    .teclado-numerico {
+        width: 95%;
+        bottom: 10px;
+    }
+
+    .tecla-num {
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .teclado-completo {
+        width: 95%;
+        bottom: 10px;
+        padding: 15px;
+    }
+
+    .tecla {
+        padding: 12px 8px;
+        font-size: 16px;
+        min-width: 35px;
+    }
+
+    .teclado-grid-completo {
+        gap: 5px;
+    }
+
+    /* Modal en móviles */
+    #mesaModal .modal-content {
+        width: 95%;
+        height: 90vh;
+        margin: 5% auto;
+    }
+
+    .modal-body {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .productos-section,
+    .ticket-section {
+        flex: none;
+    }
+
+    .categorias-tabs {
+        gap: 5px;
+    }
+
+    .categoria-tab {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-height: 35px;
+    }
+}
+
+
+
+/* Optimización para pantallas táctiles */
+.dispositivo-tactil input[readonly] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    cursor: pointer !important;
+}
+
+.dispositivo-tactil input[readonly]:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dispositivo-tactil input[readonly]:focus {
+    outline: 2px solid rgba(255, 165, 2, 0.5);
+    outline-offset: 2px;
+}
+
+/* ================================== */
+/* ANIMACIONES ADICIONALES */
+/* ================================== */
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Animación de pulse para botón Pro */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 165, 2, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 165, 2, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 165, 2, 0);
+    }
+}
+
+/* ================================== */
+/* OPTIMIZACIONES FINALES */
+/* ================================== */
+
+/* Scrollbars personalizadas */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 107, 107, 0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 107, 107, 0.7);
+}
+
+/* Asegurar que el modal de mesa ocupe todo el espacio */
+#mesaModal {
+    backdrop-filter: blur(8px);
+}
+
+/* Evitar scroll horizontal */
+body {
+    overflow-x: hidden;
+}
+
+/* Asegurar tipografía consistente */
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ================================== */
+/* OPTIMIZACIÓN MODAL COBRO TPV */
+/* ================================== */
+
+/* Botón "Exacto" más grande */
+#modalCobro button[onclick="establecerImporteExacto()"] {
+    font-size: 1.4em !important;
+    padding: 15px 25px !important;
+    min-height: 60px !important;
+}
+
+/* Labels más grandes y visibles */
+#modalCobro label {
+    font-size: 1.3em !important;
+    font-weight: 700 !important;
+    color: #ffa502 !important;
+}
+
+/* Sección de cambio más destacada */
+#modalCobro #seccionCambio {
+    padding: 25px !important;
+    border-radius: 15px !important;
+    margin: 20px 0 !important;
+}
+
+/* Contenedor de botones finales */
+#modalCobro>div:last-child {
+    margin-top: 30px !important;
+    gap: 20px !important;
+}
+
+/* Responsive para tablets */
+@media (min-width: 768px) {
+    #modalCobro .modal-content {
+        max-width: 1100px;
+        padding: 50px;
+    }
+
+    #modalCobro #totalACobrar {
+        font-size: 5em !important;
+    }
+
+    #modalCobro .btn-success,
+    #modalCobro .btn-primary {
+        font-size: 2em !important;
+        padding: 25px 50px !important;
+        min-height: 80px !important;
+    }
+}
+
+
+
+/* FORZAR ESTILOS IMPORTANTES */
+#modalCobro {
+    z-index: 2000 !important;
+}
+
+#modalCobro .modal-content {
+    transform: none !important;
+    animation: slideInScale 0.3s ease !important;
+}
+
+@keyframes slideInScale {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ============================================= */
+/* TPV GRID PROFESIONAL - FIJO 3x3 SIEMPRE */
+/* ============================================= */
+
+#productosGrid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    padding: 12px !important;
+    width: 100% !important;
+    height: calc(100vh - 280px) !important;
+    min-height: 420px !important;
+    max-height: 480px !important;
+}
+
+/* Container del grid */
+.productos-grid-container {
+    flex: 1 !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    background: rgba(20, 20, 20, 0.5);
+    border-radius: 12px;
+    padding: 8px !important;
+}
+
+/* BOTONES TPV GRANDES Y TÁCTILES */
+#productosGrid button,
+#productosGrid .producto-btn-tpv {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 120px !important;
+    background: linear-gradient(135deg, #2a2a2a, #1f1f1f) !important;
+    border: 3px solid rgba(255, 165, 2, 0.4) !important;
+    color: white !important;
+    border-radius: 18px !important;
+    padding: 10px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    transition: all 0.15s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Hover efecto */
+#productosGrid button:hover:not(.agotado) {
+    background: linear-gradient(135deg, rgba(255, 165, 2, 0.3), rgba(255, 107, 107, 0.3)) !important;
+    border-color: #ffa502 !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 8px 20px rgba(255, 165, 2, 0.4) !important;
+}
+
+/* Click efecto */
+#productosGrid button:active:not(.agotado) {
+    transform: scale(0.95) !important;
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Producto agotado */
+#productosGrid button.agotado {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f) !important;
+    border-color: rgba(255, 107, 107, 0.2) !important;
+}
+
+/* ELEMENTOS DENTRO DEL BOTÓN - MÁS GRANDES */
+.producto-emoji {
+    font-size: 42px !important;
+    line-height: 1 !important;
+    margin-bottom: 5px !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.producto-nombre {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    max-width: 90% !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.producto-precio {
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: #ffa502 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+}
+
+.producto-stock {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    padding: 3px 8px !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 12px !important;
+    margin-top: 3px !important;
+}
+
+/* Celda vacía */
+.producto-empty {
+    visibility: hidden !important;
+}
+
+/* PAGINACIÓN MEJORADA */
+.productos-paginacion-top {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 8px 15px !important;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a) !important;
+    border-radius: 10px !important;
+    margin-bottom: 8px !important;
+    border: 2px solid rgba(255, 165, 2, 0.3) !important;
+    min-height: 45px !important;
+}
+
+.btn-pagina-categoria {
+    padding: 8px 18px !important;
+    background: linear-gradient(135deg, #4a5568, #374151) !important;
+    color: white !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    min-width: 100px !important;
+}
+
+.btn-pagina-categoria:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ff6b6b, #ffa502) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(255, 165, 2, 0.4) !important;
+}
+
+.btn-pagina-categoria:disabled {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+}
+
+.indicador-pagina {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #ffa502 !important;
+    padding: 6px 12px !important;
+    background: rgba(255, 165, 2, 0.15) !important;
+    border-radius: 8px !important;
+    border: 2px solid rgba(255, 165, 2, 0.3) !important;
+    min-width: 60px !important;
+    text-align: center !important;
+}
+
+
+/* Columna productos - 70% para aprovechar más espacio */
+.productos-section {
+    flex: 0 0 72% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+}
+
+/* Columna ticket - 28% más compacta */
+.ticket-section {
+    flex: 0 0 28% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+}
+
+/* Dots de paginación */
+.productos-dots {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 8px !important;
+    height: 30px !important;
+}
+
+.dot-pagina {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.dot-pagina.active {
+    background: #ffa502 !important;
+    transform: scale(1.4) !important;
+}
+
+/* RESPONSIVE UNIFICADO - SIEMPRE 3x3 */
+@media (max-width: 767px) {
+    .modal-body {
+        flex-direction: column !important;
+    }
+
+    .productos-section {
+        height: 55vh !important;
+        flex: none !important;
+        width: 100% !important;
+    }
+
+    .ticket-section {
+        flex: none !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .productos-grid-container {
+        height: 350px !important;
+    }
+
+    #productosGrid button {
+        min-height: 100px !important;
+    }
+
+    .producto-emoji {
+        font-size: 30px !important;
+    }
+
+    .producto-nombre {
+        font-size: 12px !important;
+    }
+
+    .producto-precio {
+        font-size: 14px !important;
+    }
+}
+
+/* Tablets y desktop - MANTENER 3x3 */
+@media (min-width: 768px) {
+    #productosGrid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-rows: repeat(3, 1fr) !important;
+    }
+
+    .productos-grid-container {
+        min-height: 420px !important;
+        max-height: 500px !important;
+    }
+
+    .producto-emoji {
+        font-size: 42px !important;
+    }
+
+    .producto-nombre {
+        font-size: 14px !important;
+    }
+
+    .producto-precio {
+        font-size: 18px !important;
+    }
+}
+
+/* Animación de pulse */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 0.3s ease !important;
+}
+
+/* ============================================= */
+/* SISTEMA TPV MESAS CON PESTAÑAS POR ÁREAS */
+/* ============================================= */
+
+/* Pestañas de áreas para mesas */
+.areas-mesas-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 15px 0;
+}
+
+.area-mesa-tab {
+    padding: 15px 25px;
+    background: rgba(40, 40, 40, 0.9);
+    color: #e0e0e0;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.area-mesa-tab:hover {
+    transform: translateY(-2px);
+    background: rgba(50, 50, 50, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.area-mesa-tab.active {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+    color: white;
+    border-color: transparent;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Paginación de mesas */
+.mesas-paginacion-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 2px solid rgba(255, 165, 2, 0.3);
+    flex-shrink: 0;
+}
+
+.btn-pagina-mesa {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #4a5568, #374151);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.btn-pagina-mesa:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ff6b6b, #ffa502);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 165, 2, 0.4);
+}
+
+.btn-pagina-mesa:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.indicador-pagina-mesa {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffa502;
+    padding: 10px 20px;
+    background: rgba(255, 165, 2, 0.15);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 165, 2, 0.3);
+}
+
+/* Container del grid de mesas */
+.mesas-grid-container {
+    flex: 1;
+    overflow: hidden;
+    background: rgba(20, 20, 20, 0.5);
+    border-radius: 15px;
+    padding: 15px;
+    min-height: 500px;
+    max-height: 600px;
+}
+
+/* Grid TPV de mesas - Base 4x3 para 1920x1200 */
+.mesas-grid-tpv {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+/* Mesas TPV optimizadas */
+.mesa-tpv {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(40, 40, 40, 0.95));
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mesa-tpv::before {
+    content: '🪑';
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.08;
+    right: -20px;
+    bottom: -20px;
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.mesa-tpv:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.mesa-tpv.ocupada {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.25), rgba(255, 165, 2, 0.15));
+    border-color: rgba(255, 107, 107, 0.6);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.mesa-tpv.ocupada::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 12px;
+    height: 12px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.8);
+    animation: pulseMesa 2s infinite;
+}
+
+@keyframes pulseMesa {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+    }
+}
+
+/* Contenido de la mesa */
+.mesa-tpv h3 {
+    font-size: 1.4em;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mesa-tpv .mesa-info {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.mesa-tpv .mesa-total {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #ffa502;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.mesa-tpv.ocupada .mesa-total {
+    color: #ff6b6b;
+    font-weight: 900;
+}
+
+/* Dots de paginación para mesas */
+.mesas-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 15px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.dot-mesa {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot-mesa.active {
+    background: #ffa502;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(255, 165, 2, 0.6);
+}
+
+.dot-mesa:hover {
+    background: rgba(255, 165, 2, 0.7);
+    transform: scale(1.2);
+}
+
+/* Celda vacía para mesas */
+.mesa-empty {
+    visibility: hidden;
+}
+
+/* ===== RESPONSIVE PARA MESAS ===== */
+
+/* Pantallas grandes (1920x1200) - 4x3 */
+@media (min-width: 1400px) {
+    .mesas-grid-tpv {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .mesas-grid-container {
+        min-height: 550px;
+        max-height: 650px;
+    }
+
+    .mesa-tpv {
+        min-height: 160px;
+        padding: 25px;
+    }
+
+    .mesa-tpv h3 {
+        font-size: 1.5em;
+    }
+
+    .mesa-tpv .mesa-total {
+        font-size: 1.4em;
+    }
+}
+
+/* Tablets (768px - 1399px) - 4x3 */
+@media (min-width: 768px) and (max-width: 1399px) {
+    .mesas-grid-tpv {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .mesas-grid-container {
+        min-height: 450px;
+        max-height: 550px;
+    }
+
+    .mesa-tpv {
+        min-height: 130px;
+        padding: 18px;
+    }
+
+    .mesa-tpv h3 {
+        font-size: 1.2em;
+    }
+}
+
+/* Móviles (max 767px) - 3x4 */
+@media (max-width: 767px) {
+    .mesas-grid-tpv {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    .mesas-grid-container {
+        min-height: 400px;
+        max-height: 500px;
+    }
+
+    .mesa-tpv {
+        min-height: 100px;
+        padding: 15px;
+    }
+
+    .mesa-tpv h3 {
+        font-size: 1.1em;
+        margin-bottom: 5px;
+    }
+
+    .mesa-tpv .mesa-info {
+        font-size: 0.8em;
+    }
+
+    .mesa-tpv .mesa-total {
+        font-size: 1.1em;
+    }
+
+    .area-mesa-tab {
+        padding: 10px 15px;
+        font-size: 14px;
+        min-height: 40px;
+    }
+
+    .btn-pagina-mesa {
+        padding: 10px 15px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+
+    .indicador-pagina-mesa {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+}
+
+/* Landscape móvil */
+@media (max-width: 767px) and (orientation: landscape) {
+    .mesas-grid-tpv {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .mesas-grid-container {
+        min-height: 300px;
+        max-height: 350px;
+    }
+}
+
+/* ============================================= */
+/* GRÁFICOS AVANZADOS PRO/PREMIUM */
+/* ============================================= */
+
+/* Contenedor principal de gráficos */
+#graficosProPremium {
+    margin-top: 20px;
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Grid de gráficos responsive */
+#graficosProPremium .grid-graficos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Canvas de gráficos */
+#graficosProPremium canvas {
+    background: rgba(10, 10, 10, 0.5);
+    border-radius: 8px;
+}
+
+/* Filtros de gráficos */
+#graficosProPremium select {
+    transition: all 0.3s ease;
+}
+
+#graficosProPremium select:hover {
+    border-color: rgba(34, 197, 94, 0.5);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}
+
+/* Métricas rápidas con hover */
+#graficosProPremium [style*="background: rgba(34, 197, 94, 0.1)"] {
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+#graficosProPremium [style*="background: rgba(34, 197, 94, 0.1)"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.2);
+    background: rgba(34, 197, 94, 0.15) !important;
+}
+
+/* Responsive para gráficos */
+@media (max-width: 1200px) {
+    #graficosProPremium .grid-graficos {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    #graficosProPremium {
+        padding: 15px;
+    }
+
+    #graficosProPremium h4 {
+        font-size: 1em;
+    }
+
+    #graficosProPremium canvas {
+        height: 250px !important;
+    }
+
+    /* Stack vertical en móviles */
+    #graficosProPremium [style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    /* Filtros más grandes en móviles */
+    #graficosProPremium select,
+    #graficosProPremium button {
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* Animaciones para carga de gráficos */
+.grafico-loading {
+    position: relative;
+}
+
+.grafico-loading::after {
+    content: '📊 Cargando gráfico...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #22c55e;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+/* Tooltips mejorados para Chart.js */
+.chartjs-tooltip {
+    background: rgba(0, 0, 0, 0.9) !important;
+    border: 1px solid #22c55e !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ============================================= */
+/* OPTIMIZACIONES PARA DISPOSITIVOS LENTOS */
+/* ============================================= */
+
+/* Detectar dispositivos con poca RAM */
+@media (max-device-width: 1024px) and (max-device-height: 768px) {
+
+    /* Reducir animaciones */
+    * {
+        animation-duration: 0.1s !important;
+        transition-duration: 0.1s !important;
+    }
+
+    /* Simplificar gradientes */
+    .modal-content,
+    .tab-button,
+    .btn-success,
+    .btn-warning,
+    .btn-primary {
+        background: rgba(40, 40, 40, 0.95) !important;
+    }
+
+    /* Reducir efectos hover */
+    .mesa-tpv:hover,
+    .producto-btn-tpv:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Simplificar bordes */
+    .modal-content,
+    .productos-paginacion-top {
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        box-shadow: none !important;
+    }
+}
+
+
+/* Modo tablet optimizado */
+body.tablet-mode {
+    /* Forzar aceleración hardware solo donde importa */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+body.tablet-mode * {
+    /* Simplificar renderizado */
+    will-change: auto !important;
+    transform: none !important;
+    filter: none !important;
+}
+
+body.tablet-mode .modal-content {
+    /* Modal más simple en tablets */
+    background: #1a1a1a !important;
+    backdrop-filter: none !important;
+}
+
+body.tablet-mode #productosGrid button {
+    /* Botones más simples */
+    box-shadow: none !important;
+    border: 1px solid #444 !important;
+}
+
+/* ================================== */
+/* MODAL COBRO OPTIMIZADO FINAL */
+/* ================================== */
+
+/* Desktop estándar (1920x1080) */
+@media (min-width: 1600px) and (max-width: 1920px) {
+    #modalCobro .modal-content {
+        max-width: 550px !important;
+        padding: 20px 30px !important;
+        margin: 10vh auto !important;
+    }
+
+    #modalCobro div[style*="text-align: center"] {
+        margin-bottom: 20px !important;
+    }
+
+    #modalCobro div[style*="display: grid"] {
+        gap: 15px !important;
+    }
+
+    /* Reducir espaciado vertical */
+    #modalCobro>div {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* Tablets y laptops pequeñas */
+@media (max-width: 1599px) and (min-width: 1024px) {
+    #modalCobro .modal-content {
+        max-width: 500px !important;
+        max-height: 90vh !important;
+    }
+}
+
+/* Móviles */
+@media (max-width: 1023px) {
+    #modalCobro .modal-content {
+        width: 95% !important;
+        max-height: 95vh !important;
+        padding: 15px !important;
+    }
+
+    #modalCobro #totalACobrar {
+        font-size: 2em !important;
+    }
+
+    #modalCobro .btn-success,
+    #modalCobro .btn-primary {
+        width: 100% !important;
+    }
+}
+
+/* Prevenir scroll innecesario */
+#modalCobro .modal-content>div {
+    margin-bottom: 15px;
+}
+
+#modalCobro .modal-content>div:last-child {
+    margin-bottom: 0;
+}
+
+/* Desactivar hovers en dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+
+    button:hover,
+    .btn-primary:hover,
+    .btn-success:hover,
+    .btn-danger:hover,
+    .btn-warning:hover,
+    .producto-btn:hover,
+    .mesa-tpv:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Mantener solo el feedback al tocar */
+    button:active,
+    .btn-primary:active,
+    .producto-btn:active {
+        transform: scale(0.95) !important;
+    }
+}

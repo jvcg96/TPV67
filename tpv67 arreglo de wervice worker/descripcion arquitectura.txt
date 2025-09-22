@@ -1,0 +1,71 @@
+1. config.js → js/core/config.js
+Maneja: Variables globales del sistema, configuración inicial y estados.
+Conecta con: Todos los módulos (es la base de configuración).
+2. migrations.js → js/core/migrations.js
+Maneja: Migración de datos existentes, limpieza de duplicados y verificación de integridad.
+Conecta con: DatabaseManager (migra datos), config.js (variables de productos).
+3. users.js → js/modules/users.js
+Maneja: Gestión de usuarios, roles, permisos y renderizado de interfaces de usuario.
+Conecta con: config.js (usuarioActual), localStorage (persistencia de usuarios).
+4. licenses.js → js/core/licenses.js
+Maneja: Hardware fingerprinting, gestión de licencias y configuración de planes.
+Conecta con: localStorage (almacena licencias), config.js (licenciaActual).
+5. window-init.js → js/core/window-init.js
+Maneja: Inicialización completa del sistema al cargar la página.
+Conecta con: Todos los módulos (los inicializa).
+6. navigation.js → js/ui/navigation.js
+Maneja: Navegación entre pestañas, paginación de mesas y cambios de área.
+Conecta con: config.js (variables de mesas), tables.js (renderizado).
+7. tables.js → js/modules/tables.js
+Maneja: Lógica de mesas, gestión de productos por mesa y control de stock reservado.
+Conecta con: config.js (mesas, productos), DatabaseManager (persistencia).
+8. billing.js → js/modules/billing.js
+Maneja: Proceso de cobro, cálculo de cambio y confirmación de ventas.
+Conecta con: tables.js (datos de mesa), DatabaseManager (guarda ventas).
+9. data-management.js → js/core/data-management.js
+Maneja: Estadísticas de facturación, exportar/importar datos, backups y limpieza del sistema.
+Conecta con: DatabaseManager (obtiene ventas), licenses.js (funciones según licencia), config.js (variables globales).
+10. products.js → js/modules/products.js
+Maneja: CRUD de productos, gestión de imágenes/emojis, control de stock y renderizado de listas.
+Conecta con: DatabaseManager (guarda imágenes), config.js (array productos), categories.js y areas.js (nombres).
+11. categories.js → js/modules/categories.js
+Maneja: CRUD de categorías de productos, renderizado de listas y gestión de nombres.
+Conecta con: config.js (array categorias), products.js (filtrado por categoría).
+12. areas.js → js/modules/areas.js
+Maneja: CRUD de áreas del restaurante, asignación a productos y mesas.
+Conecta con: config.js (array areas), products.js y tables.js (asignación).
+
+13. notifications.js → js/ui/notifications.js
+Maneja: Sistema de notificaciones visuales y alertas del sistema.
+Conecta con: Todos los módulos (recibe llamadas para mostrar mensajes).
+
+14. modals.js → js/ui/modals.js
+Maneja: Gestión de modales genéricos, login, PIN y eventos de cierre.
+Conecta con: users.js (login), tables.js (cierre), billing.js (cobro).
+
+15. table-management.js → js/modules/table-management.js - Configuración de mesas (crear, editar, eliminar), gestión de capacidad y descripción. Conecta con config.js, navigation.js y areas.js.
+16. orders.js → js/modules/orders.js - Gestión de pedidos, filtros, estadísticas por hora y historial de ventas. Conecta con DatabaseManager, config.js y tables.js.
+
+17. charts.js → js/core/charts.js
+Descripción: Sistema de carga dinámica de Chart.js y gestión de gráficos avanzados para licencias Pro/Premium. Conecta con licenses.js, config.js y data-management.js.
+
+18. inventory.js → js/modules/inventory.js
+Descripción: Sistema completo de gestión de inventario y control de stock con alertas, ajustes, reabastecimiento y historial de movimientos. Conecta con config.js, products.js y DatabaseManager.
+19. virtual-keyboard.js → js/ui/virtual-keyboard.js
+Descripción: Sistema completo de teclado virtual para dispositivos táctiles con teclado numérico y completo. Conecta con config.js y se integra con todos los formularios del sistema.
+20. tpv-categories.js → js/modules/tpv-categories.js
+Descripción: Sistema de pestañas de categorías para el TPV, paginación de productos y renderizado del grid táctil. Conecta con products.js, categories.js y config.js.
+21. utils.js → js/core/utils.js
+Descripción: Funciones utilitarias generales del sistema: fechas, emojis, cálculos y funciones auxiliares compartidas. Conecta con todos los módulos como funciones de apoyo.
+22. admin-panel.js → js/core/admin-panel.js
+Descripción: Panel de administración con gestión de licencias, activación automática y funciones de mantenimiento del sistema. Conecta con licenses.js y config.js.
+23. premium-features.js → js/modules/premium-features.js
+Descripción: Funciones avanzadas exclusivas para licencias Pro/Premium: búsquedas avanzadas, modales premium y gestión de planes. Conecta con licenses.js, orders.js y config.js.
+
+24. orders-extensions.js → js/modules/orders-extensions.js
+Descripción: Extensiones y funcionalidades adicionales para el módulo de pedidos: filtros avanzados, event listeners y funciones de actualización. Conecta con orders.js y config.js.
+
+25. global-functions.js → js/core/global-functions.js
+Descripción: Funciones globales de window necesarias para la compatibilidad del TPV y navegación. Conecta con tpv-categories.js y navigation.js.
+26. initialization-hooks.js → js/core/initialization-hooks.js
+Descripción: Hooks y modificaciones de window.onload para diferentes módulos. Se ejecuta después de window-init.js.
